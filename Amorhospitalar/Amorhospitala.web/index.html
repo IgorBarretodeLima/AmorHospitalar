@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto BNC - AmorHospitalar</title>
+    <link rel="stylesheet" href="./pagina.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>LifeCare Health System</h1>
+            <p>Documentação da Solução de Banco de Dados Relacional</p>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="card">
+            <h2>1. Domínio do Banco de Dados</h2>
+            <p>O projeto foi desenvolvido para o domínio de <strong>Gestão Hospitalar e Atendimento Médico</strong>.</p>
+        </section>
+
+        <section class="card">
+            <h2>2. Contextualização e Problema</h2>
+            <p>A clínica <strong>LifeCare</strong> operava utilizando planilhas eletrônicas e anotações físicas. Essa rotina gerava:</p>
+            <ul>
+                <li>Redundância e dados inconsistentes de pacientes e consultas.</li>
+                <li>Falta de integridade referencial.</li>
+                <li>Riscos de segurança e ausência de controle de acesso.</li>
+                <li>Dificuldade para extrair métricas de faturamento e produtividade.</li>
+            </ul>
+        </section>
+
+        <section class="card">
+            <h2>3. Proposta de Melhoria</h2>
+            <p>Implementação de um SGBD Relacional (MySQL / PostgreSQL) centralizado, garantindo integridade de dados por chaves estrangeiras, prevenção de horários duplicados e geração otimizada de relatórios.</p>
+        </section>
+
+        <section class="card">
+            <h2>4. Formas Normais Aplicadas</h2>
+            <div class="normas-grid">
+                <div class="norma-item">
+                    <h3>1FN</h3>
+                    <p>Atributos atômicos. Telefone e e-mail separados sem listas multivaloradas no mesmo campo.</p>
+                </div>
+                <div class="norma-item">
+                    <h3>2FN</h3>
+                    <p>Dependência funcional total da chave primária. Na tabela <code>Consultas_Exames</code>, o resultado depende de ambas as chaves compostas.</p>
+                </div>
+                <div class="norma-item">
+                    <h3>3FN</h3>
+                    <p>Eliminação de dependências transitivas. A tabela <code>Especialidades</code> foi criada de forma independente da tabela <code>Medicos</code>.</p>
+                </div>
+                <div class="norma-item">
+                    <h3>4FN</h3>
+                    <p>Remoção de dependências multivaloradas independentes, isolando o histórico de exames da tabela principal de consultas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>5. Arquitetura e Cloud Hosting</h2>
+            <p>O banco de dados foi configurado e hospedado em nuvem na plataforma <strong>Aiven / Azure</strong>, permitindo conexão remota via SSL, rotinas automáticas de backup e alta disponibilidade.</p>
+            <button id="btnStatus" onclick="verificarStatus()">Verificar Conexão com o Banco Cloud</button>
+            <p id="statusMsg" class="status-box"></p>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Projeto de Banco de Dados | LifeCare Health System &copy; 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
